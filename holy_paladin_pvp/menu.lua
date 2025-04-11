@@ -1,30 +1,30 @@
-local core = require("core")
-local menu = core.menu
+local menu_elements = {
+    main_tree = core.menu.tree_node(),
+    enable_script_check = core.menu.checkbox(true, "enable_script_check"),
+    enable_toggle = core.menu.keybind(7, true, "enable_toggle"),
 
-local M = {}
+    pvp_settings = {
+        tree = core.menu.tree_node(),
+        enable_arena = core.menu.checkbox(true, "enable_arena"),
+        enable_bg = core.menu.checkbox(true, "enable_bg"),
+        enable_world_pvp = core.menu.checkbox(true, "enable_world_pvp"),
+        enable_duels = core.menu.checkbox(true, "enable_duels")
+    },
 
-M.elements = {}
+    healing = {
+        tree = core.menu.tree_node(),
+        triage_mode = core.menu.checkbox(false, "triage_mode"),
+        wog_threshold = core.menu.slider_int(10, 100, 75, "wog_threshold")
+    },
 
-function M.init_menu()
-    local root = menu.tree_node("Holy Paladin PvP")
+    utility = {
+        tree = core.menu.tree_node(),
+        auto_wings = core.menu.checkbox(true, "auto_wings"),
+        fake_casts = core.menu.checkbox(true, "fake_casts"),
+        auto_hoj_chain = core.menu.checkbox(true, "auto_hoj_chain"),
+        enable_freedom_prediction = core.menu.checkbox(true, "freedom_prediction"),
+        debug_logs = core.menu.checkbox(false, "debug_logs")
+    }
+}
 
-    M.elements.enable_script = menu.checkbox(true, "Enable Script")
-    M.elements.auto_wings = menu.checkbox(true, "Auto Wings")
-    M.elements.fake_casts = menu.checkbox(true, "Fake Casts")
-    M.elements.auto_hoj_chain = menu.checkbox(true, "Auto HoJ Kill Chains")
-    M.elements.triage_mode = menu.checkbox(false, "Enable Triage Mode")
-    M.elements.enable_freedom_prediction = menu.checkbox(true, "Freedom Prediction")
-    M.elements.wog_threshold = menu.slider_int(10, 100, 75, "WOG Threshold")
-    M.elements.show_debug = menu.checkbox(false, "Show Debug Logs")
-
-    root:add_child(M.elements.enable_script)
-    root:add_child(M.elements.auto_wings)
-    root:add_child(M.elements.fake_casts)
-    root:add_child(M.elements.auto_hoj_chain)
-    root:add_child(M.elements.triage_mode)
-    root:add_child(M.elements.enable_freedom_prediction)
-    root:add_child(M.elements.wog_threshold)
-    root:add_child(M.elements.show_debug)
-end
-
-return M
+return menu_elements
