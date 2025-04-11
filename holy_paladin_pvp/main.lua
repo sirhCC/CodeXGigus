@@ -4,19 +4,19 @@ local rotation = require("rotation")
 return {
     on_load = function()
         menu.init_menu()
-        print("[Holy Paladin] Menu initialized.")
+        core.log("[Holy Paladin] Menu initialized.")
         _G.paladin_state = { enabled = true }  -- Force enabled
     end,
 
     on_unload = function()
-        print("[Holy Paladin] Unloaded.")
+        core.log("[Holy Paladin] Unloaded.")
     end,
 
     run = function()
-        print("[Holy Paladin] RUN TRIGGERED")
+        core.log("[Holy Paladin] RUN TRIGGERED")
 
         if not _G.paladin_state or not _G.paladin_state.enabled then
-            print("[Holy Paladin] Script not enabled")
+            core.log("[Holy Paladin] Script not enabled")
             return
         end
 
