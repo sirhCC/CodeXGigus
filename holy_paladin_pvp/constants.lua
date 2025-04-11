@@ -1,5 +1,3 @@
--- constants.lua
-
 local enums = require("common/enums")
 local pvp_helper = require("common/utility/pvp_helper")
 
@@ -9,6 +7,7 @@ local M = {}
 M.CLASS_ID = enums.class_id.PALADIN
 M.SPEC_ID_HOLY = 65
 M.HOLY_POWER_TYPE = 9
+M.POWER_HOLY_POWER = 9 -- Alias for convenience
 
 -- Spell IDs
 M.SPELLS = {
