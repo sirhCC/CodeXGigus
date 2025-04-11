@@ -121,4 +121,78 @@ function M.should_interrupt_with_hoj(unit)
     return false
 end
 
+
+local burst_buffs = {
+    -- Paladin
+    [31884] = true,   -- Avenging Wrath
+    [231895] = true,  -- Crusade
+
+    -- Mage
+    [190319] = true,  -- Combustion
+    [12472] = true,   -- Icy Veins
+    [12042] = true,   -- Arcane Power
+
+    -- Priest
+    [391109] = true,  -- Dark Ascension
+    [232698] = true,  -- Voidform
+    [10060] = true,   -- Power Infusion
+    [47536] = true,   -- Rapture
+
+    -- Warrior
+    [107574] = true,  -- Avatar
+    [1719] = true,    -- Recklessness
+    [262228] = true,  -- Deadly Calm
+
+    -- Death Knight
+    [51271] = true,   -- Pillar of Frost
+    [47568] = true,   -- Empower Rune Weapon
+    [207289] = true,  -- Unholy Frenzy
+
+    -- Monk
+    [137639] = true,  -- Storm, Earth, and Fire
+    [152173] = true,  -- Serenity
+    [123904] = true,  -- Xuen, the White Tiger
+
+    -- Demon Hunter
+    [198589] = true,  -- Blur
+    [162264] = true,  -- Metamorphosis
+
+    -- Warlock
+    [104773] = true,  -- Unending Resolve
+    [113860] = true,  -- Dark Soul: Misery
+    [113858] = true,  -- Dark Soul: Instability
+
+    -- Rogue
+    [13750] = true,   -- Adrenaline Rush
+    [13877] = true,   -- Blade Flurry
+    [121471] = true,  -- Shadow Blades
+    [360194] = true,  -- Deathmark
+
+    -- Hunter
+    [288613] = true,  -- Trueshot
+    [266779] = true,  -- Coordinated Assault
+    [194407] = true,  -- Spitting Cobra
+
+    -- Druid
+    [102543] = true,  -- Incarnation: King of the Jungle
+    [102560] = true,  -- Incarnation: Chosen of Elune
+    [33891] = true,   -- Incarnation: Tree of Life
+    [194223] = true,  -- Celestial Alignment
+}
+
+function M.is_enemy_bursting()
+    for i = 1, 3 do
+        local enemy = core.unit_manager:get_unit("arena" .. i)
+        if enemy and enemy:is_alive() then
+            for _, buff in ipairs(enemy:get_buffs()) do
+                if burst_buffs[buff.spell_id] then
+                    return true
+                end
+            end
+        end
+    end
+    return false
+end
+
+
 return M
